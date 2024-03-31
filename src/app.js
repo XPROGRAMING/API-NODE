@@ -1,14 +1,17 @@
-const express = require('express')
+//import { openDB } from './configDB.js'
+import { createTable, insertPessoa } from './Controler/Pessoa.js'
+import express from 'express'
 const app = express()
 app.use(express.json())
 
+createTable()
 
 app.get('/', (req, res) =>{
     res.send("teste")
 })
 
 app.post('/pessoa', (req,res) =>{
-    console.log(req.body)
+    insertPessoa(req.body)
     res.json({
         "statuscCode": 200
     })
