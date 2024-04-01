@@ -32,7 +32,7 @@ export async function insertPessoa(pessoa){
         
     }); */
 }
-
+// para atualizar
 export async function updatePessoa(pessoa){
     openDB()
     .then(db => { 
@@ -40,4 +40,26 @@ export async function updatePessoa(pessoa){
         
     })
    
+}
+//par buscar todas as pessoas
+export async function selectPessoas(){
+    return openDB().then(db=>{
+        return db.all('SELECT * FROM Pessoa')
+        .then(res=>res)
+    })
+}
+// para buscar somente chamar um pessoa
+export async function selectPessoa(id){
+    return openDB().then(db=>{
+        return db.get('SELECT * FROM Pessoa WHERE id = ?', [id])
+        .then(res=>res)
+    })
+}
+
+//para deletar 
+export async function deletePessoa(id){
+    return openDB().then(db=>{
+        return db.get('DELETE FROM Pessoa WHERE id = ?', [id])
+        .then(res=>res)
+    })
 }
